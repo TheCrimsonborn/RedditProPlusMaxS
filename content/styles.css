@@ -1,0 +1,567 @@
+/* ==================================================================
+   Reddit Pro Plus Max - page styles
+   All rules are gated behind html.rppm-* classes set by core.js so the
+   master switch can disable everything instantly.
+   ================================================================== */
+
+/* ---------- generic helpers ---------- */
+html.rppm-on [data-rppm-hidden="1"],
+html.rppm-on [data-rppm-ad="1"] {
+  display: none !important;
+}
+
+html.rppm-on .rppm-collapse-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 69, 0, 0.45);
+  background: rgba(255, 69, 0, 0.12);
+  color: #ff4500;
+  border-radius: 6px;
+  font: 700 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 3px 6px;
+  margin: 2px 6px 2px 0;
+  cursor: pointer;
+  vertical-align: middle;
+  z-index: 2;
+}
+html.rppm-on .rppm-collapse-btn:hover {
+  background: #ff4500;
+  color: #fff;
+}
+html.rppm-on .rppm-collapse-btn[data-collapsed="1"] {
+  background: rgba(255, 69, 0, 0.35);
+  color: #fff;
+}
+
+/* ---------- comment collapse (new Reddit) ---------- */
+html.rppm-on shreddit-comment {
+  position: relative;
+}
+html.rppm-on shreddit-comment.rppm-collapsed > [slot="comment"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment.rppm-collapsed > [slot="comment-body"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment.rppm-collapsed > [slot="children"],
+html.rppm-on shreddit-comment.rppm-collapsed > shreddit-comment-action-row,
+html.rppm-on shreddit-comment.rppm-collapsed > shreddit-comment-tree,
+html.rppm-on shreddit-comment.rppm-collapsed > .rppm-comment-body,
+html.rppm-on shreddit-comment.rppm-collapsed shreddit-comment,
+html.rppm-on shreddit-comment[collapsed] > [slot="comment"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment[collapsed] > [slot="comment-body"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment[collapsed] > [slot="children"],
+html.rppm-on shreddit-comment[collapsed] > shreddit-comment-action-row,
+html.rppm-on shreddit-comment[collapsed] > shreddit-comment-tree,
+html.rppm-on shreddit-comment[collapsed] > .rppm-comment-body,
+html.rppm-on shreddit-comment[collapsed] shreddit-comment,
+html.rppm-on shreddit-comment[rppm-collapsed] > [slot="comment"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment[rppm-collapsed] > [slot="comment-body"]:not(.rppm-collapse-btn),
+html.rppm-on shreddit-comment[rppm-collapsed] > [slot="children"],
+html.rppm-on shreddit-comment[rppm-collapsed] > shreddit-comment-action-row,
+html.rppm-on shreddit-comment[rppm-collapsed] > shreddit-comment-tree,
+html.rppm-on shreddit-comment[rppm-collapsed] > .rppm-comment-body,
+html.rppm-on shreddit-comment[rppm-collapsed] shreddit-comment {
+  display: none !important;
+}
+html.rppm-on shreddit-comment.rppm-collapsed > .rppm-collapsed-note,
+html.rppm-on shreddit-comment[collapsed] > .rppm-collapsed-note {
+  display: block !important;
+}
+
+/* ---------- comment collapse (old Reddit) ---------- */
+html.rppm-on .comment.collapsed > .entry .usertext-body,
+html.rppm-on .comment.collapsed > .child {
+  display: none !important;
+}
+html.rppm-on .comment.rppm-current-comment > .entry {
+  outline: 2px solid #ff4500;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- comment button placement ---------- */
+html.rppm-on old-comment .rppm-collapse-btn,
+html.rppm-on shreddit-comment > .rppm-collapse-btn,
+html.rppm-on shreddit-comment [slot="comment"] > .rppm-collapse-btn {
+  position: absolute;
+  top: 6px;
+  right: 44px;
+  display: inline-flex !important;
+}
+html.rppm-on .comment > .entry .tagline .rppm-collapse-btn {
+  position: static;
+  float: right;
+  display: inline-flex !important;
+}
+
+/* ---------- new Reddit layout ---------- */
+html.rppm-hide-sidebar #left-sidebar-container,
+html.rppm-hide-sidebar [data-testid="left-sidebar"],
+html.rppm-hide-sidebar nav[aria-label="Primary"],
+html.rppm-hide-sidebar reddit-sidebar-nav {
+  display: none !important;
+}
+
+html.rppm-hide-rail #right-sidebar-container,
+html.rppm-hide-rail [data-testid="right-sidebar"],
+html.rppm-hide-rail shreddit-sidebar,
+html.rppm-hide-rail #right-sidebar,
+html.rppm-hide-rail aside[aria-label="Sidebar"] {
+  display: none !important;
+}
+
+html.rppm-hide-header header,
+html.rppm-hide-header #reddit-header,
+html.rppm-hide-header shreddit-header,
+html.rppm-hide-header [data-testid="header"] {
+  display: none !important;
+}
+
+html.rppm-hide-create [data-testid="create-post-button"],
+html.rppm-hide-create #create-post,
+html.rppm-hide-create shreddit-create-post,
+html.rppm-hide-create .submit-text,
+html.rppm-hide-create #submit {
+  display: none !important;
+}
+
+html.rppm-hide-chat #chat-button,
+html.rppm-hide-chat [data-testid="chat-button"],
+html.rppm-hide-chat reddit-chat,
+html.rppm-hide-chat shreddit-chat {
+  display: none !important;
+}
+
+html.rppm-hide-recs [data-testid="recommended-posts"],
+html.rppm-hide-recs shreddit-recommendations,
+html.rppm-hide-recs #recent-posts,
+html.rppm-hide-recs faceplate-tracker[source="recommendation"],
+html.rppm-hide-recs .recommended-posts {
+  display: none !important;
+}
+
+html.rppm-hide-trending [data-testid="trending-searches"],
+html.rppm-hide-trending shreddit-trending,
+html.rppm-hide-trending #trending-searches,
+html.rppm-hide-trending .trending-searches {
+  display: none !important;
+}
+
+html.rppm-hide-premium [data-testid="premium-upsell"],
+html.rppm-hide-premium .premium-upsell,
+html.rppm-hide-premium shreddit-premium,
+html.rppm-hide-premium .premium-banner,
+html.rppm-hide-premium #premium {
+  display: none !important;
+}
+
+html.rppm-hide-awards shreddit-post-award,
+html.rppm-hide-awards award-button,
+html.rppm-hide-awards [data-testid="award-button"],
+html.rppm-hide-awards shreddit-award,
+html.rppm-hide-awards [data-testid="post-awards"],
+html.rppm-hide-awards .award,
+html.rppm-hide-awards .awardings,
+html.rppm-hide-awards .awards {
+  display: none !important;
+}
+
+html.rppm-hide-avatars [data-testid="post-avatar"],
+html.rppm-hide-avatars shreddit-avatar,
+html.rppm-hide-avatars img[alt*="avatar" i],
+html.rppm-hide-avatars .avatar {
+  display: none !important;
+}
+
+html.rppm-hide-karma [data-testid="post-karma"],
+html.rppm-hide-karma .score,
+html.rppm-hide-karma .link-score {
+  display: none !important;
+}
+
+html.rppm-hide-votes [data-testid="post-vote"],
+html.rppm-hide-votes shreddit-post [data-testid="vote-button"],
+html.rppm-hide-votes .arrow,
+html.rppm-hide-votes .midcol {
+  display: none !important;
+}
+
+html.rppm-hide-comment-count [data-testid="comment-count"],
+html.rppm-hide-comment-count .comments,
+html.rppm-hide-comment-count shreddit-post [data-testid="comment-count"] {
+  display: none !important;
+}
+
+html.rppm-hide-flair [data-testid="post-flair"],
+html.rppm-hide-flair .flair,
+html.rppm-hide-flair shreddit-post [slot="post-flair"] {
+  display: none !important;
+}
+
+html.rppm-hide-username [data-testid="post-author"],
+html.rppm-hide-username .author,
+html.rppm-hide-username shreddit-post [slot="author"] {
+  display: none !important;
+}
+
+html.rppm-hide-child-count .rppm-child-count {
+  display: none !important;
+}
+
+/* ---------- compact mode ---------- */
+html.rppm-compact shreddit-post {
+  padding: 2px 8px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+html.rppm-compact shreddit-post [slot="post-media-container"] {
+  max-height: 240px !important;
+}
+html.rppm-compact .thing {
+  padding: 2px 6px !important;
+  margin-bottom: 2px !important;
+}
+html.rppm-compact .link .thumbnail {
+  display: none !important;
+}
+html.rppm-compact .link .title {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+}
+html.rppm-compact .comment {
+  margin-bottom: 2px !important;
+}
+
+/* ---------- wide feed ---------- */
+html.rppm-wide main,
+html.rppm-wide #main-content,
+html.rppm-wide .content[role="main"],
+html.rppm-wide shreddit-feed {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* ---------- NSFW unblur ---------- */
+html.rppm-unblur shreddit-blurred-container,
+html.rppm-unblur [data-testid="blurred-container"],
+html.rppm-unblur .nsfw-blur,
+html.rppm-unblur .blurred {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+html.rppm-unblur img.nsfw,
+html.rppm-unblur .nsfw img {
+  filter: none !important;
+}
+
+/* ---------- promoted / ads ---------- */
+html.rppm-hide-promoted shreddit-ad-post,
+html.rppm-hide-promoted [data-testid="promoted-post"],
+html.rppm-hide-promoted [data-promoted="true"],
+html.rppm-hide-promoted [promoted],
+html.rppm-hide-promoted .promoted,
+html.rppm-hide-promoted .promotedlink,
+html.rppm-hide-promoted #siteTable > .promoted,
+html.rppm-hide-promoted .thing.promoted {
+  display: none !important;
+}
+
+html.rppm-hide-sidebar-ads [data-testid="sidebar-ad"],
+html.rppm-hide-sidebar-ads .ad-container,
+html.rppm-hide-sidebar-ads #ad-frame,
+html.rppm-hide-sidebar-ads .side .spacer:nth-child(2) {
+  display: none !important;
+}
+
+/* ---------- old Reddit dark themes ---------- */
+html.rppm-theme-dark body {
+  background: #0b1416 !important;
+  color: #d7dadc !important;
+}
+html.rppm-theme-dark #header,
+html.rppm-theme-dark #header-bottom-left,
+html.rppm-theme-dark .tabmenu,
+html.rppm-theme-dark #sr-header-area {
+  background: #1a1a1b !important;
+  border-color: #343536 !important;
+}
+html.rppm-theme-dark #header a,
+html.rppm-theme-dark .tabmenu a,
+html.rppm-theme-dark #sr-header-area a {
+  color: #d7dadc !important;
+}
+html.rppm-theme-dark .thing,
+html.rppm-theme-dark .comment,
+html.rppm-theme-dark .side,
+html.rppm-theme-dark .spacer,
+html.rppm-theme-dark .usertext-body,
+html.rppm-theme-dark .md {
+  background: #1a1a1b !important;
+  color: #d7dadc !important;
+  border-color: #343536 !important;
+}
+html.rppm-theme-dark .thing .title,
+html.rppm-theme-dark .comment .md,
+html.rppm-theme-dark .tagline,
+html.rppm-theme-dark .tagline a {
+  color: #d7dadc !important;
+}
+html.rppm-theme-dark a {
+  color: #4fbcff !important;
+}
+html.rppm-theme-dark .arrow {
+  filter: invert(0.8);
+}
+html.rppm-theme-dark .link .thumbnail {
+  opacity: 0.9;
+}
+
+html.rppm-theme-amoled body {
+  background: #000 !important;
+}
+html.rppm-theme-amoled #header,
+html.rppm-theme-amoled .thing,
+html.rppm-theme-amoled .comment,
+html.rppm-theme-amoled .side,
+html.rppm-theme-amoled .spacer,
+html.rppm-theme-amoled .usertext-body,
+html.rppm-theme-amoled .md {
+  background: #000 !important;
+  border-color: #1a1a1a !important;
+}
+
+/* ---------- filtered posts ---------- */
+html.rppm-on .rppm-filtered {
+  display: none !important;
+}
+
+/* ---------- floating old/new button ---------- */
+.rppm-float-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 69, 0, 0.55);
+  background: #1a1a1b;
+  color: #ff4500;
+  font: 700 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+.rppm-float-btn:hover {
+  background: #ff4500;
+  color: #fff;
+}
+
+/* ---------- toasts ---------- */
+#rppm-toast-host {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2147483600;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.rppm-toast {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #1a1a1b;
+  color: #fff;
+  border: 1px solid #343536;
+  font: 500 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  max-width: 420px;
+}
+.rppm-toast-info {
+  border-color: #4fbcff;
+}
+.rppm-toast-success {
+  border-color: #46d160;
+}
+.rppm-toast-error {
+  border-color: #ff585b;
+}
+.rppm-toast-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ---------- moderator quick actions ---------- */
+.rppm-mod-inline {
+  display: inline-flex;
+  margin-left: 6px;
+}
+.rppm-mod-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 69, 0, 0.5);
+  background: rgba(255, 69, 0, 0.12);
+  color: #ff4500;
+  border-radius: 5px;
+  font: 800 10px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+.rppm-mod-btn:hover {
+  background: #ff4500;
+  color: #fff;
+}
+.rppm-mod-btn-new {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  opacity: 0.75;
+}
+.rppm-mod-btn-new:hover {
+  opacity: 1;
+}
+shreddit-post,
+shreddit-comment {
+  position: relative;
+}
+
+.rppm-mod-menu {
+  z-index: 2147483500;
+  min-width: 160px;
+  background: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  font: 500 12px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.rppm-mod-menu-title {
+  color: #9aa0a6;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 4px 7px 6px;
+}
+.rppm-mod-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #e6e7e8;
+  border-radius: 5px;
+  padding: 6px 8px;
+  font: 600 11px/1 inherit;
+  cursor: pointer;
+}
+.rppm-mod-menu button:hover {
+  background: #ff4500;
+  color: #fff;
+}
+
+/* ---------- user hover card ---------- */
+.rppm-hover-card {
+  z-index: 2147483400;
+  width: 320px;
+  max-height: 380px;
+  overflow: auto;
+  background: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 10px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  padding: 10px;
+  font: 500 11px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #d7dadc;
+}
+.rppm-hover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.rppm-hover-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #9aa0a6;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.rppm-hover-close:hover {
+  color: #fff;
+}
+.rppm-hover-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: #9aa0a6;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+.rppm-badge {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #343536;
+  color: #d7dadc;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.rppm-hover-recent {
+  border-top: 1px solid #343536;
+  border-bottom: 1px solid #343536;
+  padding: 6px 0;
+  margin-bottom: 8px;
+}
+.rppm-hover-item {
+  font-size: 10px;
+  color: #c8ccd0;
+  padding: 2px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rppm-hover-sub {
+  color: #ff7a45;
+  font-weight: 700;
+}
+.rppm-hover-note textarea {
+  width: 100%;
+  min-height: 48px;
+  resize: vertical;
+  background: #0b1416;
+  border: 1px solid #343536;
+  color: #d7dadc;
+  border-radius: 6px;
+  padding: 6px;
+  font: 500 10.5px/1.35 system-ui, sans-serif;
+  margin-bottom: 6px;
+}
+.rppm-hover-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.rppm-hover-loading {
+  color: #9aa0a6;
+  padding: 8px;
+}
+.rppm-user-tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 69, 0, 0.18);
+  color: #ff7a45;
+  font-size: 9px;
+  font-weight: 700;
+  vertical-align: middle;
+}

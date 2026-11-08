@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reddit Pro Plus Max S · Ayarlar</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- Top Bar -->
+      <header class="top">
+        <div class="brand">
+          <div class="logo">R++</div>
+          <div>
+            <h1>Reddit Pro Plus Max S</h1>
+            <p>Tek eklentide Reddit araçları · Firefox · Chrome · Edge · Opera</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <span id="save-status" class="save-status"></span>
+          <button id="export" class="btn" title="Ayarları JSON dosyası olarak dışa aktar">Dışa aktar</button>
+          <label class="btn file-btn" title="JSON dosyasından ayarları yükle">
+            İçe aktar
+            <input type="file" id="import" accept="application/json,.json" />
+          </label>
+          <button id="reset" class="btn danger" title="Tüm ayarları varsayılana sıfırla">Sıfırla</button>
+          <a href="https://www.reddit.com/" target="_blank" rel="noreferrer" class="btn accent" title="Reddit'i yeni sekmede aç">Reddit'i aç ↗</a>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <main id="sections">
+        <!-- 1. SATIR: Arayüz Sadeleştirme (Tek Satır / Geniş Şerit) -->
+        <section class="card card-simplify">
+          <div class="card-head-simplify">
+            <div class="simplify-title">
+              <h2>Arayüz sadeleştirme</h2>
+              <span class="desc">Yeni ve eski Reddit'te gereksiz öğeleri gizleyerek temiz bir okuma deneyimi sunar</span>
+            </div>
+            <label class="switch-master" title="Arayüz sadeleştirme modülünü aç/kapat">
+              <span>Modülü etkinleştir</span>
+              <input type="checkbox" data-path="simplify.enabled" />
+            </label>
+          </div>
+          <div class="simplify-grid">
+            <label class="switch-pill"><span>Sol gezinmeyi gizle</span><input type="checkbox" data-path="simplify.hideSidebar" /></label>
+            <label class="switch-pill"><span>Sağ kenar çubuğunu gizle</span><input type="checkbox" data-path="simplify.hideRightRail" /></label>
+            <label class="switch-pill"><span>Ödülleri gizle</span><input type="checkbox" data-path="simplify.hideAwards" /></label>
+            <label class="switch-pill"><span>Avatarları gizle</span><input type="checkbox" data-path="simplify.hideAvatars" /></label>
+            <label class="switch-pill"><span>Kompakt mod</span><input type="checkbox" data-path="simplify.compact" /></label>
+            <label class="switch-pill"><span>Geniş akış</span><input type="checkbox" data-path="simplify.wideFeed" /></label>
+            <label class="switch-pill"><span>Puanı (karma) gizle</span><input type="checkbox" data-path="simplify.hideKarma" /></label>
+            <label class="switch-pill"><span>Oylama düğmelerini gizle</span><input type="checkbox" data-path="simplify.hideVoteButtons" /></label>
+            <label class="switch-pill"><span>Yorum sayısını gizle</span><input type="checkbox" data-path="simplify.hideCommentCount" /></label>
+            <label class="switch-pill"><span>Post flair'ı gizle</span><input type="checkbox" data-path="simplify.hidePostFlair" /></label>
+            <label class="switch-pill"><span>Kullanıcı adını gizle</span><input type="checkbox" data-path="simplify.hideUsername" /></label>
+            <label class="switch-pill"><span>Gönderi oluştur'u gizle</span><input type="checkbox" data-path="simplify.hideCreatePost" /></label>
+            <label class="switch-pill"><span>Üst çubuğu gizle</span><input type="checkbox" data-path="simplify.hideHeader" /></label>
+            <label class="switch-pill"><span>Sohbeti gizle</span><input type="checkbox" data-path="simplify.hideChat" /></label>
+            <label class="switch-pill"><span>Önerilen gönderileri gizle</span><input type="checkbox" data-path="simplify.hideRecommendations" /></label>
+            <label class="switch-pill"><span>Trendleri gizle</span><input type="checkbox" data-path="simplify.hideTrending" /></label>
+            <label class="switch-pill"><span>Premium tanıtımlarını gizle</span><input type="checkbox" data-path="simplify.hidePremium" /></label>
+            <label class="switch-pill"><span>NSFW bulanıklığını kaldır</span><input type="checkbox" data-path="simplify.hideNSFWBlur" /></label>
+            <label class="switch-pill"><span>Otomatik videoyu durdur</span><input type="checkbox" data-path="simplify.disableAutoplay" /></label>
+          </div>
+        </section>
+
+        <!-- 2. SATIR: 4 Sütunlu Kompakt Menü Izgarası -->
+        <div class="bottom-grid">
+          <!-- Sütun 1: Genel & Reklam + Yorumlar -->
+          <div class="col">
+            <section class="card">
+              <div class="card-head">
+                <h2>Genel & Reklam engelleme</h2>
+              </div>
+              <div class="card-body">
+                <label class="switch-row highlight">
+                  <span>Eklentiyi etkinleştir (Ana şalter)</span>
+                  <input type="checkbox" data-path="enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Reklam engelleme modülü</span>
+                  <input type="checkbox" data-path="ads.enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Sponsorlu / promoted gönderileri gizle</span>
+                  <input type="checkbox" data-path="ads.hidePromoted" />
+                </label>
+                <label class="switch-row">
+                  <span>Kenar çubuğu reklamlarını gizle</span>
+                  <input type="checkbox" data-path="ads.hideSidebarAds" />
+                </label>
+                <label class="switch-row">
+                  <span>Gizlemek yerine DOM'dan kaldır</span>
+                  <input type="checkbox" data-path="ads.removeInsteadOfHide" />
+                </label>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h2>Yorumlar</h2>
+              </div>
+              <div class="card-body">
+                <label class="switch-row">
+                  <span>Modülü etkinleştir</span>
+                  <input type="checkbox" data-path="comments.enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Katla / aç düğmesi ekle</span>
+                  <input type="checkbox" data-path="comments.buttons" />
+                </label>
+                <label class="switch-row">
+                  <span>Klavye kısayolları (j / k / z)</span>
+                  <input type="checkbox" data-path="comments.keyboard" />
+                </label>
+                <div class="field-inline">
+                  <span>Oto katlama derinliği (0 = kapalı)</span>
+                  <input type="number" data-path="comments.autoCollapseDepth" min="0" max="12" step="1" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sütun 2: Kaydedilenler + Geçmiş Temizleme -->
+          <div class="col">
+            <section class="card">
+              <div class="card-head">
+                <h2>Kaydedilenler</h2>
+                <span class="desc">1.000 sınırını aşan yerel arşiv</span>
+              </div>
+              <div class="card-body">
+                <label class="switch-row">
+                  <span>Modülü etkinleştir</span>
+                  <input type="checkbox" data-path="saved.enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Açılışta oto senkronize et</span>
+                  <input type="checkbox" data-path="saved.autoSync" />
+                </label>
+                <div class="field-inline">
+                  <span>Sayfa boyutu (maks. 100)</span>
+                  <input type="number" data-path="saved.pageSize" min="25" max="100" />
+                </div>
+                <div class="field-inline">
+                  <span>Senk. sayfa sınırı</span>
+                  <input type="number" data-path="saved.maxPages" min="1" max="100" />
+                </div>
+                <div class="field-inline">
+                  <span>Önbellek sınırı (öğe)</span>
+                  <input type="number" data-path="saved.cacheLimit" min="500" max="50000" step="500" />
+                </div>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h2>Geçmiş temizleme</h2>
+                <span class="desc">API üzerinden kalıcı silme</span>
+              </div>
+              <div class="card-body">
+                <label class="switch-row">
+                  <span>Modülü etkinleştir</span>
+                  <input type="checkbox" data-path="cleanup.enabled" />
+                </label>
+                <div class="field-inline">
+                  <span>İşlemler arası bekleme (ms)</span>
+                  <input type="number" data-path="cleanup.rateMs" min="500" max="10000" step="100" />
+                </div>
+                <div class="field-inline">
+                  <span>Maks. taranacak sayfa</span>
+                  <input type="number" data-path="cleanup.maxPages" min="1" max="100" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sütun 3: Moderatör Araçları + Ekstralar -->
+          <div class="col">
+            <section class="card">
+              <div class="card-head">
+                <h2>Moderatör araçları</h2>
+              </div>
+              <div class="card-body">
+                <label class="switch-row">
+                  <span>Modülü etkinleştir</span>
+                  <input type="checkbox" data-path="mod.enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Gönderi/yorumlarda M düğmesi</span>
+                  <input type="checkbox" data-path="mod.quickActions" />
+                </label>
+                <label class="switch-row">
+                  <span>Kullanıcı hover kartı</span>
+                  <input type="checkbox" data-path="mod.hoverCard" />
+                </label>
+                <label class="switch-row">
+                  <span>Kullanıcı notları</span>
+                  <input type="checkbox" data-path="mod.userNotes" />
+                </label>
+                <label class="switch-row">
+                  <span>Kaldırmadan önce neden sor</span>
+                  <input type="checkbox" data-path="mod.confirmRemove" />
+                </label>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h2>Ekstralar</h2>
+              </div>
+              <div class="card-body">
+                <label class="switch-row">
+                  <span>Modülü etkinleştir</span>
+                  <input type="checkbox" data-path="extras.enabled" />
+                </label>
+                <label class="switch-row">
+                  <span>Oto çeviriyi (?tl=) kaldır</span>
+                  <input type="checkbox" data-path="extras.fixTranslate" />
+                </label>
+                <label class="switch-row">
+                  <span>Reddit görsellerini doğrudan aç</span>
+                  <input type="checkbox" data-path="extras.directImages" />
+                </label>
+                <label class="switch-row">
+                  <span>NSFW bulanıklığını kaldır</span>
+                  <input type="checkbox" data-path="extras.nsfwUnblur" />
+                </label>
+                <label class="switch-row">
+                  <span>old / yeni Reddit düğmesi</span>
+                  <input type="checkbox" data-path="extras.oldRedditButton" />
+                </label>
+                <label class="switch-row">
+                  <span>Yukarı çık düğmesi</span>
+                  <input type="checkbox" data-path="extras.scrollToTopButton" />
+                </label>
+                <label class="switch-row">
+                  <span>Kullanıcı etiketlerini göster</span>
+                  <input type="checkbox" data-path="extras.showTags" />
+                </label>
+                <div class="field-inline">
+                  <span>Eski Reddit teması</span>
+                  <select data-path="extras.theme">
+                    <option value="auto">Otomatik</option>
+                    <option value="dark">Koyu</option>
+                    <option value="amoled">AMOLED</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sütun 4: Filtreler (Kompakt Sekmeli Kural Yöneticisi) -->
+          <div class="col">
+            <section class="card card-filters">
+              <div class="card-head">
+                <h2>Filtreler</h2>
+                <span class="desc">Akıştan istemediklerinizi gizleyin</span>
+              </div>
+              <div class="card-body">
+                <div class="filter-switches">
+                  <label class="switch-pill"><span>Subreddit</span><input type="checkbox" data-path="extras.subredditFilter" /></label>
+                  <label class="switch-pill"><span>Kelime</span><input type="checkbox" data-path="extras.keywordFilter" /></label>
+                  <label class="switch-pill"><span>Kullanıcı</span><input type="checkbox" data-path="extras.userFilter" /></label>
+                </div>
+
+                <div class="filter-tab-bar">
+                  <button type="button" class="filter-tab active" data-target="pane-sub">r/ Subreddit</button>
+                  <button type="button" class="filter-tab" data-target="pane-kw">Kelimeler</button>
+                  <button type="button" class="filter-tab" data-target="pane-usr">Kullanıcılar</button>
+                  <button type="button" class="filter-tab" data-target="pane-flair">Flair'lar</button>
+                </div>
+
+                <div class="filter-textarea-wrap">
+                  <textarea id="pane-sub" class="filter-textarea active" data-path="extras.subredditBlocklist" placeholder="Her satıra bir subreddit (örn: r/askreddit)&#10;/regex/ desteği mevcuttur"></textarea>
+                  <textarea id="pane-kw" class="filter-textarea" data-path="extras.keywordBlocklist" placeholder="Her satıra bir engellenecek kelime&#10;/regex/ desteği mevcuttur"></textarea>
+                  <textarea id="pane-usr" class="filter-textarea" data-path="extras.userBlocklist" placeholder="Her satıra bir engellenecek kullanıcı adı (örn: spambot)"></textarea>
+                  <textarea id="pane-flair" class="filter-textarea" data-path="extras.flairBlocklist" placeholder="Her satıra bir engellenecek gönderi flair'ı"></textarea>
+                </div>
+                <small class="help-text">Her satır bir kuraldır. Düzenli ifade için <code>/ifade/</code> yazabilirsiniz.</small>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer Bar -->
+      <footer class="foot">
+        <span>Ayarlar otomatik kaydedilir · Kısayol: <b>Alt+Shift+R</b> paneli açar · Yorumlarda <b>j / k</b> gezinir, <b>z</b> katlar.</span>
+        <span>Reddit Pro Plus Max S · v1.0.0</span>
+      </footer>
+    </div>
+
+    <script src="../lib/settings.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "reddit-pro-plus-max-s",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firefox, Chrome, Edge ve Opera için tek eklentide gelişmiş Reddit araçları",
+  "scripts": {
+    "test": "node tools/smoke-test.js",
+    "icons": "node tools/make-icons.js",
+    "lint": "web-ext lint --source-dir . --ignore-files \"tools/**\" \"node_modules/**\" \"dist/**\" \"lint*.json\"",
+    "build": "node tools/build-all.js",
+    "build:firefox": "node tools/build-all.js",
+    "build:chromium": "node tools/build-all.js",
+    "run": "web-ext run --source-dir ."
+  },
+  "devDependencies": {
+    "web-ext": "^8.9.0"
+  }
+}

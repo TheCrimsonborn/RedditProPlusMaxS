@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit Pro Plus Max S",
+  "version": "1.0.0",
+  "description": "Tek eklentide Reddit: yeni arayüz sadeleştirme, reklam engelleme, yorum katlama, kaydedilenler yöneticisi, geçmiş temizleme ve moderatör araçları.",
+  "author": "Reddit Pro Plus Max S",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "reddit-pro-plus-max@local",
+      "strict_min_version": "120.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "120.0"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "*://*.reddit.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "Reddit Pro Plus Max S",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*"],
+      "js": [
+        "lib/settings.js",
+        "lib/util.js",
+        "content/core.js",
+        "content/simplify.js",
+        "content/ads.js",
+        "content/comments.js",
+        "content/extras.js",
+        "content/modtools.js",
+        "content/saved.js",
+        "content/cleanup.js",
+        "content/panel.js"
+      ],
+      "css": ["content/styles.css"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png", "content/*.css"],
+      "matches": ["*://*.reddit.com/*"]
+    }
+  ]
+}

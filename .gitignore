@@ -1,0 +1,6 @@
+node_modules/
+dist/
+web-ext-artifacts/
+lint*.json
+.DS_Store
+Thumbs.db

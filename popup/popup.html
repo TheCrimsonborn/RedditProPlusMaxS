@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reddit Pro Plus Max S</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <div class="logo">R++</div>
+      <div class="titles">
+        <strong>Reddit Pro Plus Max S</strong>
+        <span>tek eklenti · tüm araçlar</span>
+      </div>
+      <button id="options" class="icon" title="Tüm ayarlar">⚙</button>
+    </header>
+
+    <div id="page-status" class="status">Sayfa kontrol ediliyor…</div>
+
+    <section class="card">
+      <div class="card-title">Hızlı aç / kapat</div>
+      <label class="toggle"><span>Eklenti</span><input type="checkbox" data-setting="enabled" /></label>
+      <label class="toggle"><span>Arayüz sadeleştirme</span><input type="checkbox" data-setting="simplify.enabled" /></label>
+      <label class="toggle"><span>Reklam engelleme</span><input type="checkbox" data-setting="ads.enabled" /></label>
+      <label class="toggle"><span>Yorum katlama</span><input type="checkbox" data-setting="comments.enabled" /></label>
+      <label class="toggle"><span>Ekstralar</span><input type="checkbox" data-setting="extras.enabled" /></label>
+      <label class="toggle"><span>Moderatör araçları</span><input type="checkbox" data-setting="mod.enabled" /></label>
+    </section>
+
+    <section class="card">
+      <div class="card-title">Panel</div>
+      <div class="grid">
+        <button class="action" data-panel="saved"><b>Kaydedilenler</b><span>Ara, filtrele, dışa aktar</span></button>
+        <button class="action" data-panel="cleanup"><b>Geçmişi temizle</b><span>Toplu gönderi/yorum sil</span></button>
+        <button class="action" data-panel="mod"><b>Moderatör</b><span>Kullanıcı sorgu, not, ban</span></button>
+        <button class="action" data-panel="settings"><b>Hızlı ayarlar</b><span>Panel içi kontroller</span></button>
+      </div>
+    </section>
+
+    <section class="card stats">
+      <div><b id="stat-ads">0</b><span>reklam</span></div>
+      <div><b id="stat-comments">0</b><span>yorum</span></div>
+      <div><b id="stat-filtered">0</b><span>filtre</span></div>
+      <div><b id="stat-deleted">0</b><span>silinen</span></div>
+    </section>
+
+    <footer class="foot">
+      <button id="open-reddit" class="link">Reddit'i aç</button>
+      <span>Alt+Shift+R panel</span>
+    </footer>
+
+    <script src="../lib/settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
