@@ -111,9 +111,66 @@
         const details = el.shadowRoot.querySelector("details");
         if (details) return !details.hasAttribute("open") && !details.open;
       }
-      return el.classList.contains("rppm-collapsed") || el.hasAttribute("collapsed");
+      const colAttr = el.getAttribute("collapsed");
+      const isAttrCollapsed = colAttr !== null && colAttr !== "false";
+      return el.classList.contains("rppm-collapsed") || el.hasAttribute("rppm-collapsed") || isAttrCollapsed;
     }
     return el.classList.contains("collapsed");
+  }
+
+  function isCollapsible(el) {
+    if (!el) return false;
+
+    // Zaten katlanmış durumdaysa kesinlikle katlanabilir bir yorumdur
+    if (
+      el.classList.contains("rppm-collapsed") ||
+      el.hasAttribute("rppm-collapsed") ||
+      el.classList.contains("collapsed")
+    ) {
+      return true;
+    }
+
+    if (isNewComment(el)) {
+      // 1. Shreddit has-children niteliği
+      if (el.hasAttribute("has-children")) return true;
+
+      // 2. Shreddit alt yorum sayısı niteliği
+      const countAttr = el.getAttribute("children-count");
+      if (countAttr !== null) {
+        const count = parseInt(countAttr, 10);
+        if (!isNaN(count)) return count > 0;
+      }
+
+      // 3. Light DOM alt shreddit-comment veya ağaç varlığı
+      if (el.querySelector("shreddit-comment, shreddit-comment-tree")) return true;
+
+      // 4. [slot="children"] içinde eleman varlığı
+      const childrenSlot = el.querySelector('[slot="children"]');
+      if (childrenSlot && (childrenSlot.querySelector("shreddit-comment") || childrenSlot.children.length > 0)) {
+        return true;
+      }
+
+      // 5. Shadow DOM içinde yerel katlama / details varlığı
+      if (el.shadowRoot) {
+        const details = el.shadowRoot.querySelector("details");
+        if (details) return true;
+        const nativeCollapse = el.shadowRoot.querySelector(
+          "[data-testid='comment-collapse-button'], button[aria-label*='collapse' i], button[aria-label*='katla' i], [data-testid='threadline']"
+        );
+        if (nativeCollapse) return true;
+      }
+
+      // 6. Light DOM içinde yerel katlama / threadline düğmesi varlığı
+      const nativeBtn = el.querySelector(
+        "[data-testid='comment-collapse-button'], button[aria-label*='collapse' i], button[aria-label*='katla' i], [data-testid='threadline']"
+      );
+      if (nativeBtn) return true;
+
+      return false;
+    }
+
+    // Eski Reddit: alt yorumların (.child .comment) bulunması gerekir
+    return !!el.querySelector(".child .comment");
   }
 
   function syncDetailsListener(el) {
@@ -188,6 +245,12 @@
 
   function attachButton(el) {
     if (!RPPM.get("comments.buttons")) return;
+
+    if (!isCollapsible(el)) {
+      const existing = findButton(el);
+      if (existing) existing.remove();
+      return;
+    }
 
     let button = findButton(el);
     const header = findHeaderContainer(el);
@@ -290,7 +353,7 @@
   }
 
   function toggle(el) {
-    if (!el) return;
+    if (!el || !isCollapsible(el)) return;
     const collapsed = !isCommentCollapsed(el);
     setCollapsed(el, collapsed);
     if (collapsed) RPPM.stats.bump("commentsCollapsed", 1);
@@ -299,13 +362,15 @@
   function collapseAll() {
     const comments = getComments();
     if (!comments.length) return;
-    const top = comments.filter((c) => depthOf(c) === 0);
+    const top = comments.filter((c) => depthOf(c) === 0 && isCollapsible(c));
     top.forEach((c) => setCollapsed(c, true));
     RPPM.toast("Tüm üst düzey yorumlar katlandı", "info");
   }
 
   function expandAll() {
-    getComments().forEach((c) => setCollapsed(c, false));
+    getComments()
+      .filter((c) => isCollapsible(c))
+      .forEach((c) => setCollapsed(c, false));
     RPPM.toast("Tüm yorumlar açıldı", "info");
   }
 
@@ -314,7 +379,7 @@
     if (!limit || limit < 1) return;
     if (el.dataset.rppmAuto === "1") return;
     el.dataset.rppmAuto = "1";
-    if (depthOf(el) >= limit) setCollapsed(el, true);
+    if (isCollapsible(el) && depthOf(el) >= limit) setCollapsed(el, true);
   }
 
   function enhance(root) {
@@ -326,6 +391,11 @@
       scope.querySelectorAll("shreddit-comment, .commentarea .comment").forEach((c) => comments.push(c));
     }
     for (const comment of comments) {
+      if (!isCollapsible(comment)) {
+        const btn = findButton(comment);
+        if (btn) btn.remove();
+        continue;
+      }
       if (!comment.dataset.rppmEnhanced) {
         comment.dataset.rppmEnhanced = "1";
         attachButton(comment);

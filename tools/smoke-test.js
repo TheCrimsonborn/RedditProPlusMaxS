@@ -25,13 +25,13 @@ const html = `<!DOCTYPE html>
         <div class="entry">
           <p class="tagline"><a class="author" href="/user/alice">alice</a></p>
           <div class="usertext-body">hello</div>
-          <div class="child"></div>
+          <div class="child"><div class="comment" data-fullname="t1_c1_sub"><div class="entry"><div class="usertext-body">reply</div></div></div></div>
         </div>
       </div>
     </div>
     <shreddit-post id="t3_abc" subreddit="AskReddit" author="bob" post-title="Hello" permalink="/r/AskReddit/comments/abc/hello/" promoted></shreddit-post>
     <shreddit-post id="t3_def" subreddit="news" author="carol" post-title="World" permalink="/r/news/comments/def/world/"></shreddit-post>
-    <shreddit-comment thingid="t1_c2" depth="0"><div slot="comment">comment</div></shreddit-comment>
+    <shreddit-comment thingid="t1_c2" depth="0" has-children><div slot="comment">comment</div><shreddit-comment thingid="t1_c3" depth="1"><div slot="comment">leaf reply</div></shreddit-comment></shreddit-comment>
   </body>
 </html>`;
 
@@ -211,6 +211,7 @@ function assert(condition, message) {
   );
   assert(!!document.querySelector(".comment .rppm-collapse-btn"), "old Reddit collapse button added");
   assert(!!document.querySelector("shreddit-comment .rppm-collapse-btn"), "new Reddit collapse button added");
+  assert(!document.querySelector('shreddit-comment[thingid="t1_c3"] .rppm-collapse-btn'), "leaf comment has no collapse button");
   assert(!!document.querySelector(".rppm-float-btn"), "old/new Reddit floating button added");
 
   const oldComment = document.querySelector(".comment");
