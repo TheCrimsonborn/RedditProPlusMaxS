@@ -17,11 +17,19 @@ html.rppm-on .rppm-collapse-btn {
   color: #ff4500;
   border-radius: 6px;
   font: 700 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
-  padding: 3px 6px;
-  margin: 2px 6px 2px 0;
+  padding: 2px 6px;
+  margin: 0 4px;
   cursor: pointer;
   vertical-align: middle;
   z-index: 2;
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 html.rppm-on .rppm-collapse-btn:hover {
   background: #ff4500;
@@ -77,17 +85,16 @@ html.rppm-on .comment.rppm-current-comment > .entry {
 
 /* ---------- comment button placement ---------- */
 html.rppm-on old-comment .rppm-collapse-btn,
-html.rppm-on shreddit-comment > .rppm-collapse-btn,
-html.rppm-on shreddit-comment [slot="comment"] > .rppm-collapse-btn {
-  position: absolute;
-  top: 6px;
-  right: 44px;
+html.rppm-on shreddit-comment .rppm-collapse-btn {
+  position: static !important;
   display: inline-flex !important;
+  margin: 0 4px;
 }
 html.rppm-on .comment > .entry .tagline .rppm-collapse-btn {
-  position: static;
+  position: static !important;
   float: right;
   display: inline-flex !important;
+  margin: 0 0 0 6px;
 }
 
 /* ---------- new Reddit layout ---------- */

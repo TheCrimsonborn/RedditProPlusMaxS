@@ -15,17 +15,19 @@
       color: #ff4500;
       border-radius: 6px;
       font: 700 12px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
-      padding: 2px 7px;
-      margin: 0 6px;
+      padding: 2px 6px;
+      margin: 0 4px;
       cursor: pointer;
       vertical-align: middle;
       z-index: 10;
-      display: inline-flex;
+      position: static !important;
+      display: inline-flex !important;
       align-items: center;
       justify-content: center;
       min-width: 18px;
       height: 18px;
       line-height: 1;
+      flex-shrink: 0;
     }
     .rppm-collapse-btn:hover {
       background: #ff4500;
@@ -140,14 +142,66 @@
     }
   }
 
+  function findHeaderContainer(el) {
+    if (!el) return null;
+
+    // 1. Look for timestamp element in comment (e.g. "42m ago")
+    const time = el.querySelector && el.querySelector("faceplate-timeago, time");
+    if (time && time.parentElement) {
+      const isInsideBody = time.closest && time.closest('[slot="comment"]');
+      if (!isInsideBody) return time.parentElement;
+    }
+
+    // 2. Look for commentMeta slot in modern Reddit
+    const metaSlot = el.querySelector && el.querySelector('[slot="commentMeta"]');
+    if (metaSlot) return metaSlot;
+
+    // 3. Look for author link in comment header
+    const author = el.querySelector && el.querySelector('a[href^="/user/"], a[href*="/user/"]');
+    if (author && author.parentElement) {
+      const isInsideBody = author.closest && author.closest('[slot="comment"]');
+      if (!isInsideBody) return author.parentElement;
+    }
+
+    // 4. Check shadowRoot if present
+    if (el.shadowRoot) {
+      const summary = el.shadowRoot.querySelector("summary, header, [part='header']");
+      if (summary) return summary;
+    }
+
+    // 5. Look for comment header or entry tagline
+    const header = el.querySelector && el.querySelector('header, .comment-header, .entry .tagline');
+    if (header) return header;
+
+    return null;
+  }
+
+  function placeInHeader(header, button) {
+    if (!header || !button) return;
+    const time = header.querySelector("faceplate-timeago, time");
+    if (time && time.parentElement === header) {
+      time.insertAdjacentElement("afterend", button);
+    } else {
+      header.appendChild(button);
+    }
+  }
+
   function attachButton(el) {
     if (!RPPM.get("comments.buttons")) return;
-    if (findButton(el)) {
+
+    let button = findButton(el);
+    const header = findHeaderContainer(el);
+
+    if (button) {
+      // If button was stuck inside slot="comment" and header is now available, move it to header!
+      if (header && button.closest && button.closest('[slot="comment"]')) {
+        placeInHeader(header, button);
+      }
       syncDetailsListener(el);
       return;
     }
 
-    const button = makeButton();
+    button = makeButton();
     const collapsed = isCommentCollapsed(el);
     button.textContent = collapsed ? "+" : "−";
     button.dataset.collapsed = collapsed ? "1" : "0";
@@ -155,15 +209,9 @@
     button.setAttribute("aria-label", collapsed ? "Yorumu aç" : "Yorumu katla");
 
     if (isNewComment(el)) {
-      let attached = false;
-      if (el.shadowRoot) {
-        const summary = el.shadowRoot.querySelector("summary, header, [part='header']");
-        if (summary) {
-          summary.appendChild(button);
-          attached = true;
-        }
-      }
-      if (!attached) {
+      if (header) {
+        placeInHeader(header, button);
+      } else {
         const commentSlot = el.querySelector('[slot="comment"]');
         if (commentSlot) {
           commentSlot.prepend(button);
