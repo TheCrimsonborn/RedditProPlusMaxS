@@ -16,10 +16,10 @@ Firefox, Google Chrome, Microsoft Edge ve Opera için **tek eklentide** eksiksiz
 
 | Tarayıcı | Mağaza | Paket Dosyası | Motor |
 |---|---|---|---|
-| **Mozilla Firefox** | Firefox Add-ons (AMO) | `dist/reddit-pro-plus-max-s-v1.0.0-firefox.zip` / `.xpi` | Gecko MV3 (Scripts) |
-| **Google Chrome** | Chrome Web Store | `dist/reddit-pro-plus-max-s-v1.0.0-chrome.zip` | Chromium MV3 (Service Worker) |
-| **Microsoft Edge** | Edge Add-ons | `dist/reddit-pro-plus-max-s-v1.0.0-edge.zip` | Chromium MV3 (Service Worker) |
-| **Opera** | Opera Add-ons | `dist/reddit-pro-plus-max-s-v1.0.0-opera.zip` | Chromium MV3 (Service Worker) |
+| **Mozilla Firefox** | Firefox Add-ons (AMO) | `dist/reddit-pro-plus-max-s-v1.0.2-firefox.zip` / `.xpi` | Gecko MV3 (Scripts) |
+| **Google Chrome** | Chrome Web Store | `dist/reddit-pro-plus-max-s-v1.0.2-chrome.zip` | Chromium MV3 (Service Worker) |
+| **Microsoft Edge** | Edge Add-ons | `dist/reddit-pro-plus-max-s-v1.0.2-edge.zip` | Chromium MV3 (Service Worker) |
+| **Opera** | Opera Add-ons | `dist/reddit-pro-plus-max-s-v1.0.2-opera.zip` | Chromium MV3 (Service Worker) |
 
 ---
 
@@ -28,7 +28,7 @@ Firefox, Google Chrome, Microsoft Edge ve Opera için **tek eklentide** eksiksiz
 ### 1. Firefox (ve Firefox Developer Edition)
 1. `about:debugging#/runtime/this-firefox` adresine gidin.
 2. **Geçici Eklenti Yükle** (Load Temporary Add-on) düğmesine tıklayın.
-3. Proje dizinindeki `manifest.json` dosyasını veya `dist/reddit-pro-plus-max-s-v1.0.0-firefox.zip` dosyasını seçin.
+3. Proje dizinindeki `manifest.json` dosyasını veya `dist/reddit-pro-plus-max-s-v1.0.2-firefox.zip` dosyasını seçin.
 
 ### 2. Google Chrome
 1. `chrome://extensions/` adresine gidin.
@@ -55,14 +55,14 @@ Firefox, Google Chrome, Microsoft Edge ve Opera için **tek eklentide** eksiksiz
 3. Dağıtım türünü seçin:
    - *On this site* (AMO mağazasında listelenir, otomatik güncellenir)
    - *On your own* (Kendi sitenizden imzalı .xpi dağıtımı için)
-4. `dist/reddit-pro-plus-max-s-v1.0.0-firefox.zip` dosyasını yükleyin.
+4. `dist/reddit-pro-plus-max-s-v1.0.2-firefox.zip` dosyasını yükleyin.
 5. Otomatik doğrulama tamamlandığında açıklama, kategori ve ekran görüntülerini girip onaya gönderin.
 
 ### 2. Chrome Web Store
 1. [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole) sayfasına gidin.
 2. Google hesabınızla giriş yapın (ilk defaya mahsus \$5 kayıt ücreti gereklidir).
 3. **Yeni Öğe** (New Item) düğmesine tıklayın.
-4. `dist/reddit-pro-plus-max-s-v1.0.0-chrome.zip` dosyasını yükleyin.
+4. `dist/reddit-pro-plus-max-s-v1.0.2-chrome.zip` dosyasını yükleyin.
 5. Formları doldurun:
    - **Gizlilik Uygulamaları (Privacy practices)**: `*://*.reddit.com/*` izin gerekçesi olarak Reddit arayüz sadeleştirme, reklam engelleme ve moderatör API işlemlerini belirtin. "Eklenti hiçbir kullanıcı verisini harici sunuculara göndermez, tüm veriler yerel storage'da tutulur" maddesini işaretleyin.
    - **Tek Amaç Politikası (Single Purpose)**: Reddit kullanıcı deneyimini iyileştirme araç seti.
@@ -72,13 +72,13 @@ Firefox, Google Chrome, Microsoft Edge ve Opera için **tek eklentide** eksiksiz
 1. [Microsoft Partner Center](https://partner.microsoft.com/dashboard/microsoftedge) adresine gidin (Ücretsizdir, Microsoft hesabı yeterlidir).
 2. **Yeni uzantı gönder** (Create new extension) seçeneğine tıklayın.
 3. *İpucu:* Eğer Chrome Web Store'da yayınladıysanız, doğrudan Chrome Web Store bağlantınızı vererek tek tıkla içeri aktarabilirsiniz.
-4. Doğrudan yüklemek için: `dist/reddit-pro-plus-max-s-v1.0.0-edge.zip` dosyasını yükleyin.
+4. Doğrudan yüklemek için: `dist/reddit-pro-plus-max-s-v1.0.2-edge.zip` dosyasını yükleyin.
 5. Mağaza detaylarını (açıklama, ikonlar, ekran görüntüleri) kaydedip onaya gönderin.
 
 ### 4. Opera Add-ons
 1. [Opera Add-ons Developer Portal](https://addons.opera.com/developer/) adresine gidin (Ücretsizdir).
 2. **Upload a new add-on** düğmesine tıklayın.
-3. `dist/reddit-pro-plus-max-s-v1.0.0-opera.zip` dosyasını yükleyin.
+3. `dist/reddit-pro-plus-max-s-v1.0.2-opera.zip` dosyasını yükleyin.
 4. İsim, açıklama ve görselleri ekleyip onaya gönderin.
 
 ---

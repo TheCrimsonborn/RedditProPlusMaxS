@@ -143,8 +143,11 @@ const webExtArtifacts = path.join(ROOT, "web-ext-artifacts");
 if (!fs.existsSync(webExtArtifacts)) {
   fs.mkdirSync(webExtArtifacts, { recursive: true });
 }
-fs.copyFileSync(firefoxZip, path.join(webExtArtifacts, `reddit_pro_plus_max_s-1.0.0.zip`));
-fs.copyFileSync(firefoxXpi, path.join(webExtArtifacts, `reddit_pro_plus_max_s-1.0.0.xpi`));
+fs.copyFileSync(firefoxZip, path.join(webExtArtifacts, `reddit_pro_plus_max_s-${VERSION}.zip`));
+fs.copyFileSync(firefoxXpi, path.join(webExtArtifacts, `reddit_pro_plus_max_s-${VERSION}.xpi`));
+// Also keep generic unversioned aliases
+fs.copyFileSync(firefoxZip, path.join(webExtArtifacts, `reddit_pro_plus_max_s.zip`));
+fs.copyFileSync(firefoxXpi, path.join(webExtArtifacts, `reddit_pro_plus_max_s.xpi`));
 
 // Clean up build directories
 fs.rmSync(firefoxDir, { recursive: true, force: true });

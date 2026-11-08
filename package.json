@@ -1,10 +1,11 @@
 {
   "name": "reddit-pro-plus-max-s",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": true,
   "description": "Firefox, Chrome, Edge ve Opera için tek eklentide gelişmiş Reddit araçları",
   "scripts": {
     "test": "node tools/smoke-test.js",
+    "bump": "node tools/bump-version.js",
     "icons": "node tools/make-icons.js",
     "lint": "web-ext lint --source-dir . --ignore-files \"tools/**\" \"node_modules/**\" \"dist/**\" \"lint*.json\"",
     "build": "node tools/build-all.js",
